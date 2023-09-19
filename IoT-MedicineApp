@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: appiot
+  labels:
+    app: appiot
+spec:
+  containers:
+  - name: n1
+    image: huanaws/iotapp
+    ports:
+      - containerPort: 6060
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svciot
+spec:
+  selector:
+     app: appiot
+  type: NodePort
+  ports:
+    - name: port1
+      port: 6060
+      targetPort: 6060
+      nodePort: 31000
